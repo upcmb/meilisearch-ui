@@ -5,13 +5,13 @@ import dayjs from "dayjs";
 import { type FC, useState } from "react";
 interface Props {
 	className?: string;
-	date?: Date;
+	date?: Date | string | null;
 }
 
 export const TimeAgo: FC<Props> = ({ className = "", date }) => {
 	const [isHover, setIsHover] = useState(false);
-	// Check for null/undefined and validate date before using it
-	if (date == null) {
+	// Check for null/undefined/empty string and validate date before using it
+	if (date == null || date === "") {
 		return <div className={cn("w-fit h-fit", className)}>-</div>;
 	}
 	const dayjsDate = dayjs(date);

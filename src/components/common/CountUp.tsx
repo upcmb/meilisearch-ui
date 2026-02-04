@@ -4,12 +4,12 @@ import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
 interface Props {
-	start: Date | null | undefined;
+	start: Date | string | null | undefined;
 }
 
 export const CountUp: FC<Props> = ({ start }) => {
-	// Handle null/undefined dates
-	if (start == null) {
+	// Handle null/undefined/empty string dates
+	if (start == null || start === "") {
 		return <>-</>;
 	}
 	const dayjsDate = dayjs(start);
